@@ -1,1 +1,6 @@
-# This repository contains some rez examples and example code
+# Rez examples and utilities
+
+## rezify_python
+
+rezify_python is a command line utility to release python versions as rez
+package.
