@@ -3,6 +3,13 @@
 rezify_python is a command line utility to release python versions as rez
 package.
 
+### Installation
+
+Clone the repository and install using pip:
+```
+pip install .
+```
+
 ### Usage
 
 ```
