@@ -5,7 +5,7 @@ import setuptools
 with open("README.md", "r") as f:
     long_description = f.read()
 
-requirements = ["click"]
+requirements = ["rez", "click"]
 
 
 setuptools.setup(
