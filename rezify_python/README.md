@@ -12,7 +12,7 @@ pip install .
 
 ### Usage
 
-Note: the version needs to be given as exact version e.g. 3.8.9, partial versions like 3.7 will not work (due to the way nuget handles these requests). You can find a full list of supported releases here: https://www.nuget.org/packages/python/
+**Note:** the version needs to be given as exact version e.g. 3.8.9, partial versions like 3.7 will not work (due to the way nuget handles these requests). You can find a full list of supported releases here: https://www.nuget.org/packages/python/
 
 Support for releasing python-2.x releases will be added soon.
 
