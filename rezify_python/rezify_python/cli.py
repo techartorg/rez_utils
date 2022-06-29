@@ -23,7 +23,6 @@ from .create_package import create_package
     help="Release specific version (latest if not set)",
 )
 def cli(release, packages_path, python_version):
-    release = True
     if not packages_path:
         packages_path = (
             config.release_packages_path if release else config.local_packages_path
