@@ -14,6 +14,15 @@ log = logging.getLogger(__name__)
 def create_package(packages_path, python_version):
     """Release a python nuget package as rez package.
     """
+    # Source: https://www.nuget.org/packages/python#versions-body-tab
+    package_name = "python"
+
+    if (
+        python_version == "2" or python_version.startswith("2.")
+    ):
+        # Source: https://www.nuget.org/packages/python2#versions-body-tab
+        package_name = "python2"
+
     try:
         temp_folder = tempfile.mkdtemp(prefix="rezpy-")
         nuget_path = os.path.join(temp_folder, "nuget.exe")
@@ -26,7 +35,7 @@ def create_package(packages_path, python_version):
             cmd = [
                 nuget_path,
                 "install",
-                "python",
+                package_name,
                 "-OutputDirectory",
                 temp_folder,
                 "-Version",
@@ -42,7 +51,11 @@ def create_package(packages_path, python_version):
         except Exception as e:
             raise OSError("Installation failed: " + str(e.stderr))
 
-        source_path = os.path.join(temp_folder, "python." + python_version, "tools")
+        source_path = os.path.join(
+            temp_folder,
+            "{package_name}.".format(package_name=package_name) + python_version,
+            "tools"
+        )
 
         def make_root(variant, path):
             distutils.dir_util.copy_tree(source_path, path)
@@ -61,6 +74,8 @@ env.PATH.append(os.path.join(this.root, "DLLs"))
     except Exception as e:
         log.error(e)
 
+    else:
+        log.info("Installed to %s", packages_path)
     finally:
         log.info("Remove temporary folder -> " + temp_folder)
         shutil.rmtree(temp_folder)
